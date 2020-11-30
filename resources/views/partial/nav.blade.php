@@ -15,6 +15,12 @@
             <li class="nav-item">
               <a class="nav-link" href="/equipes">EQUIPES</a>
             </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/create-joueur">Ajout joueur </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/joueurs">JOUEURS</a>
+              </li>
           </ul>
         </div>
 </nav>

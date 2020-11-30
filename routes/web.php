@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\EquipeController;
+use App\Http\Controllers\JoueurController;
+use App\Models\Joueur;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,9 +19,19 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [EquipeController::class, 'index']);
 Route::get('/create-equipe', [EquipeController::class, 'create']);
 Route::post('/store-equipe', [EquipeController::class, 'store']);
-
 Route::get('/equipes', [EquipeController::class, 'showEquipe']);
 Route::get('/equipe/{id}', [EquipeController::class, 'show']);
 Route::get('/edit-equipe/{id}', [EquipeController::class, 'edit']);
 Route::post('/edit-equipe/{id}', [EquipeController::class, 'update']);
 Route::post('/delete-equipe/{id}', [EquipeController::class, 'destroy']);
+
+
+Route::get('/', [JoueurController::class, 'index']);
+Route::get('/create-joueur', [JoueurController::class, 'create']);
+Route::post('/store-joueur', [JoueurController::class, 'store']);
+Route::get('/joueurs', [JoueurController::class, 'showJoueurs']);
+Route::get('/joueurs/{id}', [JoueurController::class, 'show']);
+Route::get('/edit-joueur/{id}', [JoueurController::class, 'edit']);
+Route::post('/edit-joueur/{id}', [JoueurController::class, 'update']);
+
+

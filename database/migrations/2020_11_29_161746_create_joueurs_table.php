@@ -15,10 +15,10 @@ class CreateJoueursTable extends Migration
     {
         Schema::create('joueurs', function (Blueprint $table) {
             $table->id();
-            $table->sting('nom', 20);
-            $table->sting('prenom', 20);
-            $table->interger('telephone');
-            $table->sting('email', 20);
+            $table->string('nom', 20);
+            $table->string('prenom', 20);
+            $table->integer('telephone');
+            $table->string('email', 40);
             $table->string('genre', 20);
             $table->string('pays', 20);
             $table->string('role', 20);

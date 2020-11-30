@@ -14,7 +14,8 @@ class JoueurController extends Controller
      */
     public function index()
     {
-        //
+        $joueurs = Joueur::all();
+        return view('welcome', compact('joueurs')); 
     }
 
     /**
@@ -24,7 +25,7 @@ class JoueurController extends Controller
      */
     public function create()
     {
-        //
+        return view('add-joueur'); 
     }
 
     /**
@@ -35,7 +36,17 @@ class JoueurController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newJoueur = new Joueur();
+        $newJoueur->nom = $request->nom;
+        $newJoueur->prenom = $request->prenom;
+        $newJoueur->telephone = $request->telephone;
+        $newJoueur->email = $request->email;
+        $newJoueur->genre = $request->genre;
+        $newJoueur->pays = $request->pays;
+        $newJoueur->role = $request->role;
+
+        $newJoueur->save();
+        return redirect()->back(); 
     }
 
     /**
@@ -44,9 +55,17 @@ class JoueurController extends Controller
      * @param  \App\Models\Joueur  $joueur
      * @return \Illuminate\Http\Response
      */
-    public function show(Joueur $joueur)
-    {
-        //
+
+    public function showJoueurs(){
+        $joueurs= Joueur::all();
+        return view('joueurs', compact('joueurs'));
+    }
+
+
+
+    public function show($id){
+        $joueur= Joueur::find($id);
+        return view('show-joueur', compact('joueur'));
     }
 
     /**
@@ -55,9 +74,9 @@ class JoueurController extends Controller
      * @param  \App\Models\Joueur  $joueur
      * @return \Illuminate\Http\Response
      */
-    public function edit(Joueur $joueur)
-    {
-        //
+    public function edit($id){
+        $editJoueur = Joueur::find($id);
+        return view("edit-joueur", compact("editJoueur"));
     }
 
     /**
