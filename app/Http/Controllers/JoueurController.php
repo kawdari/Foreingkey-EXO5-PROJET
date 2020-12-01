@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Equipe;
 use App\Models\Joueur;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Symfony\Contracts\Service\Attribute\Required;
 
 class JoueurController extends Controller
 {
@@ -25,7 +28,8 @@ class JoueurController extends Controller
      */
     public function create()
     {
-        return view('add-joueur'); 
+        $equipe = Equipe::all();
+        return view('add-joueur', compact('equipe')); 
     }
 
     /**
@@ -36,17 +40,39 @@ class JoueurController extends Controller
      */
     public function store(Request $request)
     {
+        $validateForm = $request->validate(
+            [
+                "nom"=>"string|required",
+                "prenom"=>"string|required",
+                "age"=>"integer|required",
+                "telephone"=>"required",
+                "genre"=>"required",
+                "email"=>"required",
+                "role"=>"required",
+                "src" => "mimes:jpeg,bmp,png",
+                "equipe_id" =>"required",
+                "pays"=>"string|required",
+            ]
+        );
+
         $newJoueur = new Joueur();
         $newJoueur->nom = $request->nom;
         $newJoueur->prenom = $request->prenom;
+        $newJoueur->age= $request->age;
         $newJoueur->telephone = $request->telephone;
         $newJoueur->email = $request->email;
         $newJoueur->genre = $request->genre;
         $newJoueur->pays = $request->pays;
         $newJoueur->role = $request->role;
+        $newJoueur->equipe_id = $request->equipe_id;
+        $newJoueur->src = $request->file("src")->hashName();
 
         $newJoueur->save();
-        return redirect()->back(); 
+        $request->file("src")->storePublicly("images", "public");
+
+
+
+        return redirect()->back();
     }
 
     /**
@@ -60,7 +86,6 @@ class JoueurController extends Controller
         $joueurs= Joueur::all();
         return view('joueurs', compact('joueurs'));
     }
-
 
 
     public function show($id){
@@ -86,9 +111,26 @@ class JoueurController extends Controller
      * @param  \App\Models\Joueur  $joueur
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Joueur $joueur)
+    public function update(Request $request, $id)
     {
-        //
+        $updateJoueur = Joueur::find($id);
+        $updateJoueur->nom = $request->nom;
+        $updateJoueur->prenom = $request->prenom;
+        $updateJoueur->age= $request->age;
+        $updateJoueur->telephone = $request->telephone;
+        $updateJoueur->email = $request->email;
+        $updateJoueur->genre = $request->genre;
+        $updateJoueur->pays = $request->pays;
+        $updateJoueur->role = $request->role;
+
+        Storage::disk("public")->delete("images/" . $updateJoueur->src);
+
+        $updateJoueur->src = $request->file("src")->hashName();
+        $updateJoueur->save();
+
+        $request->file("src")->storePublicly("images", "public");
+
+        return redirect("/joueurs");
     }
 
     /**

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEquipesTable extends Migration
+class CreateCountriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,10 @@ class CreateEquipesTable extends Migration
      */
     public function up()
     {
-        Schema::create('equipes', function (Blueprint $table) {
+        Schema::create('countries', function (Blueprint $table) {
             $table->id();
-            $table->string('nom', 20);
-            $table->string('ville', 20);
             $table->string('pays', 20);
-            $table->integer('maxJoueurs');
-            $table->integer('maxAvant');
-            $table->integer('maxArrière');
-            $table->integer('maxCentraux');
-            $table->integer('maxRemplacant');
- 
+            $table->string('continent', 20);
             $table->timestamps();
         });
     }
@@ -35,7 +28,6 @@ class CreateEquipesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('equipes');
+        Schema::dropIfExists('countries');
     }
 }
-

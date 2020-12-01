@@ -17,11 +17,15 @@ class CreateJoueursTable extends Migration
             $table->id();
             $table->string('nom', 20);
             $table->string('prenom', 20);
+            $table->integer('age');
+            $table->string('src');
             $table->integer('telephone');
             $table->string('email', 40);
             $table->string('genre', 20);
             $table->string('pays', 20);
             $table->string('role', 20);
+            $table->unsignedBigInteger('equipe_id');
+            $table->foreign('equipe_id')->references('id')->on('equipes');
             $table->timestamps();
         });
     }

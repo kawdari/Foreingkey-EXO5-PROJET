@@ -1,4 +1,80 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Nunito);@import url(https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;
+
+0,400;0,700;0,900;1,900&display=swap);@charset "UTF-8";
+#background {
+  background-image: url(/public/images/background.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+  height: 150vh;
+  background-repeat: no-repeat;
+}
+
+#back {
+  background-image: url(https://gtimg.tokyo2020.org/image/private/t_article-image-desktop/v1579588220/production/rbn3fix2z0pyovs1j0x7);
+  background-size: cover;
+}
+
+#divCEV {
+  position: absolute;
+  left: 35%;
+  top: 20%;
+  z-index: -1;
+}
+
+#divCEV img {
+  border-radius: 5%;
+}
+
+.body {
+  background-color: aqua;
+}
+
+.home {
+  position: absolute;
+  left: 44%;
+  top: 15%;
+}
+
+.home a {
+  text-decoration: none;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  font-style: italic;
+  font-weight: bolder;
+  font-size: 3em;
+}
+
+.home a:hover {
+  text-decoration: none;
+  color: blue;
+}
+
+#site {
+  font-family: "Roboto", sans-serif;
+}
+
+#formEquipe {
+  padding-top: 10%;
+}
+
+#formEq {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+  padding: 1.2em;
+}
+
+#allTeam {
+  top: 10%;
+}
+
+#show {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+  padding: 1.2em;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 /*!
  * Bootstrap v4.5.3 (https://getbootstrap.com/)

@@ -1,0 +1,40 @@
+#back {
+    background-image: url(https://gtimg.tokyo2020.org/image/private/t_article-image-desktop/v1579588220/production/rbn3fix2z0pyovs1j0x7);
+    background-size:cover;
+}
+
+#divCEV {
+   
+    position: absolute;
+    left: 35%;
+    top: 20%;  
+    z-index: -1;
+}
+#divCEV img {
+    border-radius: 5%;
+}
+
+.body {
+    background-color: aqua;
+}
+
+.home {
+        position: absolute;
+        left: 44%;
+        top: 15%;
+}
+
+.home a {
+    text-decoration: none;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-style: italic;
+    font-weight: bolder;
+    font-size: 3em;
+}
+
+.home a:hover {
+    text-decoration: none;
+    color: blue;
+
+}

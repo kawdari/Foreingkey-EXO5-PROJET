@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Country;
 use App\Models\Equipe;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Symfony\Contracts\Service\Attribute\Required;
 
 class EquipeController extends Controller
 {
@@ -25,7 +28,8 @@ class EquipeController extends Controller
      */
     public function create()
     {
-        return view('add-equipe');
+        $pays = Country::all();
+        return view('add-equipe', compact('pays'));
     }
 
     /**
@@ -36,11 +40,30 @@ class EquipeController extends Controller
      */
     public function store(Request $request)
     {
+        $validateForm = $request->validate(
+            [
+                "nom"=>"string|required",
+                "ville"=>"string|required",
+                "pays"=>"string|required",
+                "maxJoueurs"=>"integer|required",
+                "maxAvant"=>"integer|required",
+                "maxArrière"=>"integer|required",
+                "maxCentraux"=>"integer|required",
+                "maxRemplacant" => "integer|required",
+                
+            ]
+        );
         $newEquipe = new Equipe();
         $newEquipe->nom = $request->nom;
         $newEquipe->ville = $request->ville;
         $newEquipe->pays = $request->pays;
         $newEquipe->maxJoueurs = $request->maxJoueurs;
+
+        $newEquipe->maxAvant = $request->maxAvant;
+        $newEquipe->maxArrière = $request->maxArrière;
+        $newEquipe->maxCentraux = $request->maxCentraux;
+        $newEquipe->maxRemplacant = $request ->maxRemplacant;
+
         $newEquipe->save();
         return redirect()->back();
     }
@@ -88,6 +111,11 @@ class EquipeController extends Controller
         $updateEquipe->ville = $request->ville;
         $updateEquipe->pays = $request->pays;
         $updateEquipe->maxJoueurs = $request->maxJoueurs;
+
+        $updateEquipe->maxAvant = $request->maxAvant;
+        $updateEquipe->maxArrière = $request->maxArrière;
+        $updateEquipe->maxCentraux = $request->maxCentraux;
+        $updateEquipe->maxRemplacant = $request ->maxRemplacant;
         $updateEquipe->save();
 
         return redirect("/equipes");

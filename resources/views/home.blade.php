@@ -8,18 +8,11 @@
     <link rel="stylesheet" href="{{asset("css/app.css")}}">
 
 </head>
-<body>
-<div id="site">
-    @include('partial/background')
-     @include('partial/nav')
+<body  id="back">
+    <div class="body">
+            @include('component/nav1')
+    </div>
     
-        
-    @yield('content')
-
-</div>
-   
-  
-
     <script src="{{asset("js/app.js")}}"></script>
 </body>
 </html>
